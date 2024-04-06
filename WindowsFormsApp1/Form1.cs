@@ -34,5 +34,13 @@ namespace WindowsFormsApp1
         {
 
         }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form f = new Form2();
+            f.MdiParent = this;
+            f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
+            f.Show();
+        }
     }
 }
