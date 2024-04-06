@@ -25,39 +25,26 @@ namespace WindowsFormsApp1
 
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
-            foreach (var rect in savedRectangles)
-            {
-                Pen pen = new Pen(Color.Black, 2);
-                e.Graphics.DrawRectangle(pen, rect);
-            }
-
-            if (currentRectangle != null)
-            {
-                Pen pen = new Pen(Color.Black, 2);
-                pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                e.Graphics.DrawRectangle(pen, currentRectangle);
-            }
+            PaintClassRectangle paintClass = new PaintClassRectangle(savedRectangles,currentRectangle,e);
+            paintClass.PaintRectangle();
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button == MouseButtons.Left)
-            {
-                startPoint = e.Location;
-                currentRectangle = new Rectangle(startPoint, Size.Empty);
-                isDrawing = true;
-            }
+            MouseDownRectangle mouseDownRectangle = new MouseDownRectangle(e, startPoint, currentRectangle, isDrawing);
+            mouseDownRectangle.MouseDown();
+            startPoint = mouseDownRectangle.startPoint;
+            currentRectangle = mouseDownRectangle.currentRectangle;
+            isDrawing = mouseDownRectangle.isDrawing;
         }
 
         private void Form2_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDrawing)
             {
-                int width = Math.Abs(e.X - startPoint.X);
-                int height = Math.Abs(e.Y - startPoint.Y);
-                int left = Math.Min(startPoint.X, e.X);
-                int top = Math.Min(startPoint.Y, e.Y);
-                currentRectangle = new Rectangle(left, top, width, height);
+                MouseMoveRectangle mouseMoveRectangle = new MouseMoveRectangle(startPoint, currentRectangle,e);
+                mouseMoveRectangle.MouseMove();
+                currentRectangle = mouseMoveRectangle.currentRectangle;
                 this.Invalidate();
             }
         }
@@ -66,9 +53,11 @@ namespace WindowsFormsApp1
         {
             if (e.Button == MouseButtons.Left)
             {
-                isDrawing = false;
-                savedRectangles.Add(currentRectangle);
-                currentRectangle = Rectangle.Empty;
+                MouseUpRectangle mouseUpRectangle = new MouseUpRectangle(e, isDrawing, savedRectangles, currentRectangle);
+                mouseUpRectangle.MouseUp();
+                isDrawing = mouseUpRectangle.isDrawing;
+                savedRectangles = mouseUpRectangle.savedRectangles;
+                currentRectangle = mouseUpRectangle.currentRectangle;
                 this.Invalidate();
             }
         }
