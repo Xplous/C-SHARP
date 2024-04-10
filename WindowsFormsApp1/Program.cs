@@ -6,6 +6,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    [Serializable]
     internal static class Program
     {
         /// <summary>

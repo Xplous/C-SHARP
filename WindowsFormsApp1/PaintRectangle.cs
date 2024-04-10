@@ -8,6 +8,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    [Serializable]
     internal class PaintClassRectangle
     {
         private List<Rectangle> savedRectangles;

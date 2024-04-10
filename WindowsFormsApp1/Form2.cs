@@ -10,17 +10,19 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    [Serializable]
     public partial class Form2 : Form
     {
         private Point startPoint;
         private Rectangle currentRectangle;
         private bool isDrawing;
-        private List<Rectangle> savedRectangles;
-
-        public Form2()
+        public List<Rectangle> savedRectangles;
+        public bool newFormCreated;
+        public Form2(bool newFormCreated)
         {
             InitializeComponent();
             savedRectangles = new List<Rectangle>();
+            this.newFormCreated = newFormCreated;
         }
 
         private void Form2_Paint(object sender, PaintEventArgs e)
@@ -65,6 +67,43 @@ namespace WindowsFormsApp1
         private void Form2_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            string msg = "Вы хотите сохранить?";
+            DialogResult result = MessageBox.Show(msg, "Close Confirmation",
+                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (newFormCreated)
+                {
+                    SaveAndOpen saveWindow = new SaveAndOpen(this, MdiParent);
+                    saveWindow.saveHowToolStripMenuItem_Click(sender, e);
+                }
+                else
+                {
+                    SaveAndOpen saveWindow = new SaveAndOpen(this, MdiParent);
+                    var responce = saveWindow.saveToolStripMenuItem_Click(sender, e, this.Text);
+                    if (responce && MdiParent is Форма parentForm)
+                    {
+                        parentForm.EnableSaveHowMenuItem();
+                    }
+                }
+                e.Cancel = false;
+            }
+            else if (result == DialogResult.No)
+            {
+                e.Cancel = false;
+            }
+            else if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+            else
+            {
+                e.Cancel = false;
+            }
         }
     }
 }
