@@ -20,17 +20,17 @@ namespace WindowsFormsApp1
             this.currentRectangle = currentRectangle;
             this.e = e;
         }
-        public void PaintRectangle()
+        public void PaintRectangle(Color penColor, int penWidth)
         {
             foreach (var rect in savedRectangles)
             {
-                Pen pen = new Pen(Color.Black, 2);
+                Pen pen = new Pen(penColor, penWidth);
                 e.Graphics.DrawRectangle(pen, rect);
             }
 
             if (currentRectangle != null)
             {
-                Pen pen = new Pen(Color.Black, 2);
+                Pen pen = new Pen(penColor, penWidth);
                 pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
                 e.Graphics.DrawRectangle(pen, currentRectangle);
             }

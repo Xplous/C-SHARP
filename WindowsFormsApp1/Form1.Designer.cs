@@ -34,7 +34,10 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveHowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.window = new System.Windows.Forms.ToolStripMenuItem();
+            this.параметрыToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.цветЛинииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.цветФонаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.толщинаЛинииToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -43,10 +46,10 @@
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.window});
+            this.параметрыToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1006, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1006, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -89,11 +92,36 @@
             this.saveHowToolStripMenuItem.Text = "Сохранить как";
             this.saveHowToolStripMenuItem.Click += new System.EventHandler(this.saveHowToolStripMenuItem_Click);
             // 
-            // window
+            // параметрыToolStripMenuItem
             // 
-            this.window.Name = "window";
-            this.window.Size = new System.Drawing.Size(59, 24);
-            this.window.Text = "Окно";
+            this.параметрыToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.цветЛинииToolStripMenuItem,
+            this.цветФонаToolStripMenuItem,
+            this.толщинаЛинииToolStripMenuItem});
+            this.параметрыToolStripMenuItem.Name = "параметрыToolStripMenuItem";
+            this.параметрыToolStripMenuItem.Size = new System.Drawing.Size(104, 26);
+            this.параметрыToolStripMenuItem.Text = "Параметры";
+            // 
+            // цветЛинииToolStripMenuItem
+            // 
+            this.цветЛинииToolStripMenuItem.Name = "цветЛинииToolStripMenuItem";
+            this.цветЛинииToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.цветЛинииToolStripMenuItem.Text = "Цвет линии";
+            this.цветЛинииToolStripMenuItem.Click += new System.EventHandler(this.цветЛинииToolStripMenuItem_Click);
+            // 
+            // цветФонаToolStripMenuItem
+            // 
+            this.цветФонаToolStripMenuItem.Name = "цветФонаToolStripMenuItem";
+            this.цветФонаToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.цветФонаToolStripMenuItem.Text = "Цвет фона";
+            this.цветФонаToolStripMenuItem.Click += new System.EventHandler(this.цветФонаToolStripMenuItem_Click);
+            // 
+            // толщинаЛинииToolStripMenuItem
+            // 
+            this.толщинаЛинииToolStripMenuItem.Name = "толщинаЛинииToolStripMenuItem";
+            this.толщинаЛинииToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.толщинаЛинииToolStripMenuItem.Text = "Толщина линии";
+            this.толщинаЛинииToolStripMenuItem.Click += new System.EventHandler(this.толщинаЛинииToolStripMenuItem_Click);
             // 
             // Форма
             // 
@@ -118,12 +146,15 @@
         #endregion
 
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem window;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem новыйToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveHowToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem параметрыToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem цветЛинииToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem цветФонаToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem толщинаЛинииToolStripMenuItem;
     }
 }
 

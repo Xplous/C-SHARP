@@ -18,6 +18,9 @@ namespace WindowsFormsApp1
         private bool isDrawing;
         public List<Rectangle> savedRectangles;
         public bool newFormCreated;
+        public Color penColor;
+        public Color backgroundColor;
+        public int penWidth;
         public Form2(bool newFormCreated)
         {
             InitializeComponent();
@@ -28,7 +31,7 @@ namespace WindowsFormsApp1
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
             PaintClassRectangle paintClass = new PaintClassRectangle(savedRectangles,currentRectangle,e);
-            paintClass.PaintRectangle();
+            paintClass.PaintRectangle(penColor, penWidth);
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)

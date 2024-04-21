@@ -75,7 +75,10 @@ namespace WindowsFormsApp1
                     Top = form.Top,
                     Width = form.Width,
                     Height = form.Height,
-                    savedRectangles = form.savedRectangles
+                    savedRectangles = form.savedRectangles,
+                    BackColor = form.BackColor,
+                    penColor = form.penColor,
+                    penWidth = form.penWidth,
                 };
 
                 BinaryFormatter formatter = new BinaryFormatter();
@@ -109,6 +112,9 @@ namespace WindowsFormsApp1
                     newForm.Height = formData.Height;
                     newForm.MdiParent = MdiParent;
                     newForm.savedRectangles = formData.savedRectangles;
+                    newForm.BackColor = formData.BackColor;
+                    newForm.penColor = formData.penColor;
+                    newForm.penWidth = formData.penWidth;
                     newForm.Show();
                 }
                 MessageBox.Show("Форма успешно восстановлена.", "Открытие", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -127,6 +133,9 @@ namespace WindowsFormsApp1
             public int Top { get; set; }
             public int Width { get; set; }
             public int Height { get; set; }
+            public Color BackColor { get; set; }
+            public Color penColor { get; set; }
+            public int penWidth {  get; set; }
             public List<Rectangle> savedRectangles { get; set; }
         }
        

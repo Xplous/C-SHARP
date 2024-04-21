@@ -9,6 +9,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static WindowsFormsApp1.FormEditWidthPen;
+
 namespace WindowsFormsApp1
 {
     public partial class Форма : Form
@@ -16,12 +18,22 @@ namespace WindowsFormsApp1
         string fileName;
         bool newFormCreated;
         Form activeChildForm;
+        public Color penColor;
+        public Color backgroundColor;
+        public int penWidth;
+        public ColorDialog colorDialog;
+        public string selectedIndex { get; set; }
         public Форма()
         {
             InitializeComponent();
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = false;
-            
+            penColor = Color.Black;
+            backgroundColor = Color.White;
+            penWidth = 2;
+            colorDialog = new ColorDialog();
+            colorDialog.FullOpen = true;
+            colorDialog.Color = Color.Black;
         }
         public void EnableSaveHowMenuItem()
         {
@@ -50,10 +62,13 @@ namespace WindowsFormsApp1
         public void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newFormCreated = true;
-            Form f = new Form2(newFormCreated);
+            Form2 f = new Form2(newFormCreated);
             f.MdiParent = this;
             f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
             fileName = f.Text;
+            f.BackColor = backgroundColor;
+            f.penColor = penColor;
+            f.penWidth = penWidth;
             f.Show();
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = true;
@@ -102,6 +117,32 @@ namespace WindowsFormsApp1
             this.activeChildForm = Form.ActiveForm;
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = false;
+        }
+
+        private void цветЛинииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            {
+                if (colorDialog.ShowDialog(this) == DialogResult.OK)
+                {
+                    penColor = colorDialog.Color;
+                }
+            }
+        }
+
+        private void цветФонаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (colorDialog.ShowDialog(this) == DialogResult.OK)
+            {
+                backgroundColor = colorDialog.Color;
+            }
+        }
+
+        private void толщинаЛинииToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Создаем экземпляр дочерней формы и подписываемся на событие WidthPenChanged
+                FormEditWidthPen formEditWidthPen = new FormEditWidthPen(penWidth);
+                formEditWidthPen.ShowDialog();
+                penWidth = formEditWidthPen.GetSelectedWidth();
         }
     }
 }
