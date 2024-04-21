@@ -15,12 +15,13 @@ namespace WindowsFormsApp1
     {
         string fileName;
         bool newFormCreated;
+        Form activeChildForm;
         public Форма()
         {
             InitializeComponent();
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = false;
-
+            
         }
         public void EnableSaveHowMenuItem()
         {
@@ -59,10 +60,10 @@ namespace WindowsFormsApp1
         }
         public void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ActiveMdiChild != null)
+            if (activeChildForm != null)
             {
-                SaveAndOpen saveWindow = new SaveAndOpen(ActiveMdiChild, MdiParent);
-                var response = saveWindow.saveToolStripMenuItem_Click(sender,e, ActiveMdiChild.Text);
+                SaveAndOpen saveWindow = new SaveAndOpen(activeChildForm, MdiParent);
+                var response = saveWindow.saveToolStripMenuItem_Click(sender,e, activeChildForm.Text);
                 if (response == true)
                 {
                     saveToolStripMenuItem.Enabled = false;
@@ -73,20 +74,20 @@ namespace WindowsFormsApp1
 
         public void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SaveAndOpen openWindow = new SaveAndOpen(ActiveMdiChild, MdiParent);
+            SaveAndOpen openWindow = new SaveAndOpen(activeChildForm, MdiParent);
             var responce = openWindow.openToolStripMenuItem_Click(sender, e);
             if (responce == true)
             {
-                saveToolStripMenuItem.Enabled = true;
-                saveHowToolStripMenuItem.Enabled = true;
+                saveToolStripMenuItem.Enabled = false;
+                saveHowToolStripMenuItem.Enabled = false;
             }
         }
 
         public void saveHowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ActiveMdiChild != null)
+            if (activeChildForm != null)
             {
-                SaveAndOpen saveWindow = new SaveAndOpen(ActiveMdiChild, MdiParent);
+                SaveAndOpen saveWindow = new SaveAndOpen(activeChildForm, MdiParent);
                 var responce = saveWindow.saveHowToolStripMenuItem_Click(sender, e);
                 if (responce == true)
                 {
@@ -94,6 +95,13 @@ namespace WindowsFormsApp1
                     saveHowToolStripMenuItem.Enabled = false;
                 }
             }
+        }
+
+        private void Форма_MdiChildActivate(object sender, EventArgs e)
+        {
+            this.activeChildForm = Form.ActiveForm;
+            saveToolStripMenuItem.Enabled = false;
+            saveHowToolStripMenuItem.Enabled = false;
         }
     }
 }
