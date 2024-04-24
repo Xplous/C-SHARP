@@ -26,6 +26,8 @@ namespace WindowsFormsApp1
             InitializeComponent();
             savedRectangles = new List<Rectangle>();
             this.newFormCreated = newFormCreated;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(300, 300);
         }
 
         private void Form2_Paint(object sender, PaintEventArgs e)

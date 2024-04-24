@@ -27,7 +27,6 @@ namespace WindowsFormsApp1
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Отправляем событие с новым значением толщины пера
             Close();
         }
 
@@ -35,18 +34,15 @@ namespace WindowsFormsApp1
         {
             if (listBox1.SelectedItem != null)
             {
-                // Получаем выбранное значение из списка и преобразуем его в int
                 int selectedWidth;
                 if (int.TryParse(listBox1.SelectedItem.ToString(), out selectedWidth))
                 {
-                    // Сохраняем выбранное значение толщины пера
                     penWidth = selectedWidth;
                 }
             }
         }
         public int GetSelectedWidth()
         {
-            // Возвращаем выбранную толщину пера
             return penWidth;
         }
     }

@@ -62,6 +62,8 @@ namespace WindowsFormsApp1
         public void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             newFormCreated = true;
+            FormSize formSize = new FormSize();
+            formSize.ShowDialog(this); 
             Form2 f = new Form2(newFormCreated);
             f.MdiParent = this;
             f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
@@ -69,6 +71,8 @@ namespace WindowsFormsApp1
             f.BackColor = backgroundColor;
             f.penColor = penColor;
             f.penWidth = penWidth;
+            f.Width = formSize.GetSelectedWidth();
+            f.Height = formSize.GetSelectedHeight();
             f.Show();
             saveToolStripMenuItem.Enabled = false;
             saveHowToolStripMenuItem.Enabled = true;
@@ -139,7 +143,6 @@ namespace WindowsFormsApp1
 
         private void толщинаЛинииToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Создаем экземпляр дочерней формы и подписываемся на событие WidthPenChanged
                 FormEditWidthPen formEditWidthPen = new FormEditWidthPen(penWidth);
                 formEditWidthPen.ShowDialog();
                 penWidth = formEditWidthPen.GetSelectedWidth();

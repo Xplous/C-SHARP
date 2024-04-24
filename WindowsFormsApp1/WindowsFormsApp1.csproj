@@ -48,23 +48,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormEditBackgroundColor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormEditBackgroundColor.Designer.cs">
-      <DependentUpon>FormEditBackgroundColor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormEditColorPen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormEditColorPen.Designer.cs">
-      <DependentUpon>FormEditColorPen.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormEditWidthPen.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormEditWidthPen.Designer.cs">
       <DependentUpon>FormEditWidthPen.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSize.Designer.cs">
+      <DependentUpon>FormSize.cs</DependentUpon>
     </Compile>
     <Compile Include="MouseMoveRectangle.cs" />
     <Compile Include="Form1.cs">
@@ -91,14 +85,11 @@
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEditBackgroundColor.resx">
-      <DependentUpon>FormEditBackgroundColor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormEditColorPen.resx">
-      <DependentUpon>FormEditColorPen.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FormEditWidthPen.resx">
       <DependentUpon>FormEditWidthPen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSize.resx">
+      <DependentUpon>FormSize.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
