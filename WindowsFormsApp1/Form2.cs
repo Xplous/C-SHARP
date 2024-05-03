@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    // Форма ребёнок
     public partial class Form2 : Form
     {
         private Point startPoint;

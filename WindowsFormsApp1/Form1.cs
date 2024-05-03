@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace WindowsFormsApp1
 {
+    // Форма родитель
     public partial class Форма : Form
     {
         public Форма()
@@ -37,6 +38,7 @@ namespace WindowsFormsApp1
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Создаём форму-рёбенок
             Form f = new Form2();
             f.MdiParent = this;
             f.Text = "Рисунок " + this.MdiChildren.Length.ToString();
