@@ -14,6 +14,7 @@ namespace WindowsFormsApp1
         public Point startPoint;
         public Rectangle currentRectangle;
         public bool isDrawing;
+        // Конструктор класса в (переменные которые используются классом при создании экземпляра)
         public MouseDownRectangle(MouseEventArgs e, Point startPoint,Rectangle currentRectangle, bool isDrawing)
         {
             this.e = e;
@@ -26,6 +27,7 @@ namespace WindowsFormsApp1
         {
             if (e.Button == MouseButtons.Left)
             {
+                // При нажатии прямоугольник начинает рисоваться
                 startPoint = e.Location;
                 currentRectangle = new Rectangle(startPoint, Size.Empty);
                 isDrawing = true;

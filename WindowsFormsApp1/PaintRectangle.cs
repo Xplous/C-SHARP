@@ -13,7 +13,7 @@ namespace WindowsFormsApp1
         private List<Rectangle> savedRectangles;
         private Rectangle currentRectangle;
         private PaintEventArgs e;
-
+        // Конструктор принимает переменные и устанавливает в переменные класса
         public PaintClassRectangle(List<Rectangle> savedRectangles, Rectangle currentRectangle, PaintEventArgs e) {
             this.savedRectangles = savedRectangles;
             this.currentRectangle = currentRectangle;
@@ -21,12 +21,13 @@ namespace WindowsFormsApp1
         }
         public void PaintRectangle()
         {
+            // Отрисовка сохранённых прямоугольников
             foreach (var rect in savedRectangles)
             {
                 Pen pen = new Pen(Color.Black, 2);
                 e.Graphics.DrawRectangle(pen, rect);
             }
-
+            // Отрисовка текущего прямоугольника(который мы рисуем)
             if (currentRectangle != null)
             {
                 Pen pen = new Pen(Color.Black, 2);

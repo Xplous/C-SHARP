@@ -20,19 +20,23 @@ namespace WindowsFormsApp1
         public Form2()
         {
             InitializeComponent();
+            // Сохранённые прямоугольники
             savedRectangles = new List<Rectangle>();
         }
 
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
+            // Создаём экзэмпляр класса PaintClassRectangle, в котором происходит отрисовка
             PaintClassRectangle paintClass = new PaintClassRectangle(savedRectangles,currentRectangle,e);
             paintClass.PaintRectangle();
         }
 
         private void Form2_MouseDown(object sender, MouseEventArgs e)
         {
+            // Создаём экзэмпляр класса MouseDownRectangle
             MouseDownRectangle mouseDownRectangle = new MouseDownRectangle(e, startPoint, currentRectangle, isDrawing);
             mouseDownRectangle.MouseDown();
+            // Получаю данные после нажатия мыши
             startPoint = mouseDownRectangle.startPoint;
             currentRectangle = mouseDownRectangle.currentRectangle;
             isDrawing = mouseDownRectangle.isDrawing;
@@ -42,9 +46,12 @@ namespace WindowsFormsApp1
         {
             if (isDrawing)
             {
+                // Создаём экзэмпляр класса MouseMoveRectangle
                 MouseMoveRectangle mouseMoveRectangle = new MouseMoveRectangle(startPoint, currentRectangle,e);
                 mouseMoveRectangle.MouseMove();
+                // Получаю данные после движения мыши
                 currentRectangle = mouseMoveRectangle.currentRectangle;
+                // Для отрисовки, перерисовывается рисующийся прямоуголньник
                 this.Invalidate();
             }
         }
@@ -53,11 +60,14 @@ namespace WindowsFormsApp1
         {
             if (e.Button == MouseButtons.Left)
             {
+                // Создаём экзэмпляр класса MouseUpRectangle
                 MouseUpRectangle mouseUpRectangle = new MouseUpRectangle(e, isDrawing, savedRectangles, currentRectangle);
                 mouseUpRectangle.MouseUp();
+                // Получаю данные после отпускания кнопки мыши
                 isDrawing = mouseUpRectangle.isDrawing;
                 savedRectangles = mouseUpRectangle.savedRectangles;
                 currentRectangle = mouseUpRectangle.currentRectangle;
+                // Для отрисовки, при отпускании кнопки перерисовываются прямоугольники
                 this.Invalidate();
             }
         }
