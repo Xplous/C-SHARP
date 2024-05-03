@@ -10,16 +10,19 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApp1
 {
+    // SaveAndOpen, класс который отвечает за сохранение и открытие формы-ребёнок
     internal class SaveAndOpen
     {
         public Form ActiveMdiChild;
         public Form MdiParent;
         public bool newFormCreated;
+        // В конструкторе устанавливаем форму родитель и форму ребёнок
         public SaveAndOpen(Form activeMdiChild, Form mdiParent)
         {
             this.ActiveMdiChild = activeMdiChild;
             this.MdiParent = mdiParent;
         }
+        // Метод класса "Сохранить как", когда вызывается всплывает окно в проводнике с сохранением формы
         public bool saveHowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (ActiveMdiChild != null)
@@ -38,6 +41,7 @@ namespace WindowsFormsApp1
             }
             return false;
         }
+        // Метод класса "Сохранить", сохраняет имеющийся форму
         public bool saveToolStripMenuItem_Click(object sender, EventArgs e, string Text)
         {
             if (ActiveMdiChild != null)
@@ -46,7 +50,7 @@ namespace WindowsFormsApp1
             }
             return true;
         }
-
+        // Метод класса "Открыть", открыть форму
         public bool openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -69,6 +73,7 @@ namespace WindowsFormsApp1
         {
             try
             {
+                // Устанавливаем данные в форму для сериализации
                 FormPositionData formData = new FormPositionData
                 {
                     Left = form.Left,
@@ -99,6 +104,7 @@ namespace WindowsFormsApp1
                 BinaryFormatter formatter = new BinaryFormatter();
                 using (FileStream stream = new FileStream(filename, FileMode.Open))
                 {
+                    // Достаём данные из formData(файл который открыли) и указываем новой форме данные
                     FormPositionData formData = (FormPositionData)formatter.Deserialize(stream);
                     newFormCreated = false;
                     Form2 newForm = new Form2(newFormCreated);

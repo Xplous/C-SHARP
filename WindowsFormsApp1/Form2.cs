@@ -68,7 +68,7 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        // Если форма закрывается мы предлагаем сохранить пользователю файл
         private void Form2_FormClosing(object sender, FormClosingEventArgs e)
         {
             string msg = "Вы хотите сохранить?";
